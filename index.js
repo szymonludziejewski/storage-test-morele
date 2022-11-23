@@ -10,13 +10,13 @@ const app = express();
 app.use(bodyParser.json())
 
 app.get('/', (_request, response) => {
-  response.json(database.readData('data'));
+  response.json(database.getDatabaseSize());
 });
 
 app.post('/', (request, response) => {
   const id = (new Date()).getTime();
   database.addData('data', id, request.body);
-  response.json(database.readData('data'));
+  response.json(database.getDatabaseSize());
 });
 
 app.listen(environment.PORT, () => {

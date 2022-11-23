@@ -2,16 +2,13 @@ const fs = require('fs');
 
 const getDatabaseSize = () => {
   const stats = fs.statSync('./simple-database/database.json');
-  return stats.size / (1024 * 1024);
+  return `${stats.size / (1024 * 1024)}MB`;
 }
 
 const getDatabaseJSON = () => {
   try {
-    // let rawdata = fs.readFileSync('./simple-database/database.json');
-    let database = {
-      size: `${getDatabaseSize()}MB`
-      // data: JSON.parse(rawdata)
-    }
+    let rawdata = fs.readFileSync('./simple-database/database.json');
+    let database = JSON.parse(rawdata);
     return database;
   } catch (error) {
     console.error(error);
@@ -82,6 +79,7 @@ const databaseFunctions = {
     database[endpointName][resourceID] = undefined;
     saveDatabaseJSON(database);
   },
+  getDatabaseSize
 };
 
 module.exports = databaseFunctions;
