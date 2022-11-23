@@ -1,9 +1,18 @@
 const fs = require('fs');
 
+const getDatabaseSize = () => {
+  const stats = fs.statSync('./simple-database/database.json');
+  return stats.size / (1024 * 1024);
+}
+
 const getDatabaseJSON = () => {
   try {
     let rawdata = fs.readFileSync('./simple-database/database.json');
     let database = JSON.parse(rawdata);
+    database = {
+      size: `${getDatabaseSize()}MB`,
+      ...database
+    }
     return database;
   } catch (error) {
     console.error(error);
