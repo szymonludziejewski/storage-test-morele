@@ -16,7 +16,7 @@ app.get('/', (_request, response) => {
 app.post('/', (request, response) => {
   const id = (new Date()).getTime();
   database.addData('data', id, request.body);
-  response.json({status: 'OK'});
+  response.json(database.readData('data'));
 });
 
 app.listen(environment.PORT, () => {

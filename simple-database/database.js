@@ -7,9 +7,9 @@ const getDatabaseSize = () => {
 
 const getDatabaseJSON = () => {
   try {
-    let rawdata = fs.readFileSync('./simple-database/database.json');
+    // let rawdata = fs.readFileSync('./simple-database/database.json');
     let database = {
-      size: `${getDatabaseSize()}MB`,
+      size: `${getDatabaseSize()}MB`
       // data: JSON.parse(rawdata)
     }
     return database;
