@@ -14,8 +14,10 @@ app.get('/', (_request, response) => {
 });
 
 app.post('/', (request, response) => {
-  const id = (new Date()).getTime();
-  database.addData('data', id, request.body);
+  for (let i=0; i < 100; i++) {
+    const id = (new Date()).getTime();
+    database.addData('data', id, request.body);
+  }
   response.json(database.getDatabaseSize());
 });
 
