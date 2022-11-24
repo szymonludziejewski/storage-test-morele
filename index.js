@@ -15,7 +15,7 @@ app.get('/', (_request, response) => {
 
 app.post('/', (request, response) => {
   const jsonString = JSON.stringify(request.body);
-  for (let i=0; i < 100; i++) {
+  for (let i=0; i < 10000; i++) {
     const id = (new Date()).getTime();
     database.addRawData(jsonString);
   }
