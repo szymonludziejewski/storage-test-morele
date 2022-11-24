@@ -24,7 +24,18 @@ const saveDatabaseJSON = (jsonObject) => {
   }
 };
 
+const saveDatabaseRawData = (string) => {
+  try {
+    fs.appendFileSync('./simple-database/database.json', string);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 const databaseFunctions = {
+  addRawData: (string) => {
+    saveDatabaseRawData(string);
+  },
   addData: (endpointName, resourceID, resourceObject) => {
     const database = getDatabaseJSON();
     if (!database) {
